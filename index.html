@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5f2">
+  <title>UANGKU — Catatan Keuangan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <h1>UANGKU</h1>
+      <div class="header-controls">
+        <button class="button button-quiet" id="toggle-visibility" type="button" aria-pressed="false">Sembunyikan</button>
+        <label class="month-control" aria-label="Pilih bulan">
+          <input id="month-picker" type="month">
+        </label>
+      </div>
+    </header>
+
+    <section class="card summary" aria-labelledby="summary-title">
+      <p class="eyebrow" id="summary-title">Saldo bulan ini</p>
+      <p class="balance" id="balance">Rp0</p>
+      <div class="stats">
+        <div><span>Pemasukan</span><strong class="positive" id="income">Rp0</strong></div>
+        <div><span>Pengeluaran</span><strong class="negative" id="expense">Rp0</strong></div>
+        <div><span>Rata-rata per hari</span><strong id="daily-average">Rp0</strong></div>
+        <div><span>Ditabung</span><strong id="saved-percent">0%</strong></div>
+      </div>
+    </section>
+
+    <section class="card insight" aria-labelledby="insight-title">
+      <h2 id="insight-title">Insight bulan ini</h2>
+      <p id="insight-text">Catat beberapa transaksi untuk melihat insight.</p>
+    </section>
+
+    <section class="card form-card" aria-labelledby="form-title">
+      <h2 id="form-title">Catat transaksi</h2>
+      <form id="transaction-form">
+        <div class="segmented" role="group" aria-label="Jenis transaksi">
+          <button type="button" class="segment selected" data-type="expense" aria-pressed="true">Pengeluaran</button>
+          <button type="button" class="segment" data-type="income" aria-pressed="false">Pemasukan</button>
+        </div>
+        <div class="form-grid">
+          <label class="input-wrap"><span class="visually-hidden">Tanggal</span><input id="date" type="date" required></label>
+          <label class="input-wrap"><span class="visually-hidden">Jumlah dalam rupiah</span><input id="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Jumlah (Rp)" required></label>
+          <label class="input-wrap"><span class="visually-hidden">Kategori</span><input id="category" type="text" placeholder="Kategori (mis. Makan)" maxlength="40" required></label>
+          <label class="input-wrap"><span class="visually-hidden">Catatan opsional</span><input id="note" type="text" placeholder="Catatan (opsional)" maxlength="100"></label>
+        </div>
+        <div class="chips" id="category-chips" aria-label="Pilih kategori"></div>
+        <button class="button button-primary" type="submit">Simpan transaksi</button>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card transactions-card" aria-labelledby="transactions-title">
+      <div class="section-heading"><h2 id="transactions-title">Transaksi bulan ini</h2><span id="transaction-count">0 transaksi</span></div>
+      <ul class="transaction-list" id="transaction-list"></ul>
+      <p class="empty-state" id="empty-state">Belum ada transaksi pada bulan ini.</p>
+    </section>
+    <footer>Data tersimpan di browser perangkat ini.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
